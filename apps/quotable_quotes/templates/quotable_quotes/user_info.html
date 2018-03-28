@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log in page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid text-success text-center"><h1>Posts by {{ request.session.info_name }}</h1></div>
+		<a class="float-right" href="{% url 'logout' %}"><h4>Log out</h4></a>
+		<h3>Number of quotes posted: {{ request.session.info_review_amount }}</h3>
+			{% for quote in request.session.info_quotes %}
+			<div class="border border-success">
+				<p>Quote author: {{ quote.author }}</p>
+				<p>Quote content: {{ quote.content }}</p>
+			</div>
+			{% endfor %}
+		<a href="{% url 'home' %}">Go back to your home page</a>
+	</div>
+</body>
+</html>

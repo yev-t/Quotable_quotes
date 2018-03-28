@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log in page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid text-success text-center"><h1>Log in and Registration</h1></div>
+		{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+		{% endif %}
+		<div class="row">
+			<div class="col-md-6">
+				<fieldset>
+					<legend>Register</legend>
+					<form action="{% url 'registration' %}" method="POST">
+			  			{% csrf_token %}
+				    	<div class="form-group">
+				      		<label for="user_name">Select an alias:</label>
+				      		<input type="text" class="form-control" id="alias" placeholder="Alias" name="alias">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="user_password">Select a Password:</label>
+				      		<input type="password" class="form-control" id="password" placeholder="Password" name="password">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="confirm_password">Confirm your password:</label>
+				      		<input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password">
+				    	</div>
+					    <div class="form-group">
+				      		<label for="first_name">Enter your name:</label>
+				      		<input type="text" class="form-control" id="name" placeholder="Full name" name="name">
+				    	</div>
+						<div class="form-group">
+				      		<label for="date_of_birth">Enter your Date of birth:</label>
+				      		<input type="date" class="form-control" id="date_of_birth" placeholder="Date of birth" name="date_of_birth">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="email">Enter your e-mail:</label>
+				      		<input type="text" class="form-control" id="email" placeholder="E-mail" name="email">
+				    	</div>
+				    	<button type="submit" class="btn btn-primary">Register</button>
+			  		</form><br>
+		  		</fieldset>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>Log In</legend>
+					<form action="{% url 'login' %}" method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+				      		<label for="username">Alias:</label>
+				      		<input type="text" class="form-control" id="alias" placeholder="Alias" name="alias">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="password">Password:</label>
+				      		<input type="password" class="form-control" id="password" placeholder="Password" name="password">
+				    	</div>
+				    	<button type="submit" class="btn btn-primary">Log in</button>
+					</form><br>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
